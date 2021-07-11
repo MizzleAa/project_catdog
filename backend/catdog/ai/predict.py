@@ -116,7 +116,7 @@ class Predict(FileIO):
             
             model_args = {
                 "device":"cuda:0",
-                "config":f"{dir}\\configs\\faster_rcnn\\{options['model_name']}.py",
+                "config":f"{dir}\\configs\\{options['model_root']}\\{options['model_name']}.py",
                 "checkpoint":f"{dir}\\checkpoints\\{options['model_name']}.pth",
             }
 

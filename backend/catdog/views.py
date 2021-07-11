@@ -40,7 +40,10 @@ class RecordCreate(APIView):
         path = default_storage.save(input_file_name, ContentFile(files.read()))
         
         predict_options = {
-            "model_name": "faster_rcnn_r50_fpn_1x_coco",
+            #"model_root":"faster_rcnn",
+            #"model_name": "faster_rcnn_r50_fpn_1x_coco",
+            "model_root":"cascade_rcnn",
+            "model_name": "cascade_mask_rcnn_x101_32x4d_fpn_1x_coco",
             "input_file_name":input_file_name,
             "predict_file_name":predict_file_name
         }
