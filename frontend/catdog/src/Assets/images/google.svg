@@ -1,0 +1,10 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+	<title>새 프로젝트</title>
+	<defs>
+		<image  width="74" height="48" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEoAAAAwCAMAAACBtxzkAAAAAXNSR0IB2cksfwAAAGlQTFRFAAAAf39/VVVVeXl58/T2dHR0W1tb////bGxscnJyampqeHh4aWlpY2Njd3d3qqqqa2trXFxcPz8/v7+/ZmZmbW1tX19fVFRUdXV1jY2NcXFxn5+fdnZ2bm5uhoaGc3Nzb29vi4uLWlpaXVSEQwAAACN0Uk5TAAAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf3GfrAAAB3klEQVR4nL2X7XbCIAyGCWPDTee0lqrdh273f5GD2tJAAwR3zt4/2kCfpiEJVAgskMPPg3J6fHL/JYh7ZEF6pQJZ0B0sC3pWS70MI5UkSYBunlU5ZicnQE6VXmVIQ8jYPq2zJKU2bNZrgaS2mukUlEj81yuRJPCcYpDE3aS328huvARNL6DcOqH81RFq7/CNlAc3xxla2ic53QcQW3yAfQG74k7nur/R+PcLysWINpqflEd13hT61EQ3QDLPC6iauvWo42RpEyRJCT+p8WH/q1PzrV10fVu8SVqcFKkhL5r9ue/P0Pu1ejfGdEEqzOsVZ4gXZMYCVFNEfbhk46DKXtlwNgzUbo56BiWT1Y/sn/+O4rwgL1Z2jtytyCH8v+zVGmfxdBuVorqIMiNKA7R6tPUgwSroe2Z+oPiiUajpLPvVBbtFtyc845BB4YkdKv3B6UH0yhRQVGsIwoajTqA2AatdkDo8TD3DLCzT5KAlQ9Aao2CeFktxDVhy3hvcjoN9CrOKlAqFRtpoJNoQIW7Sczv0giO03TW27gsuLbfnpBhn0nTx1pLQPpQl8bYjhl/fLJBgnLEqju4Flqk7AmRgfMzoV1iOs071nzm2+ohvE6j/xhHjYcpgzo81SOaR/RfvwSBflyBCmgAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="google" href="#img1" x="15" y="23" />
+</svg>
