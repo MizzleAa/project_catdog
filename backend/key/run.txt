@@ -1,0 +1,4 @@
+key 만드는곳 참조 사이트
+https://dev100.tistory.com/20
+
+python manage.py runsslserver 192.168.0.11:8000 --certificate ./key/private.crt --key ./key/private.key 
