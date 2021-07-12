@@ -9,6 +9,7 @@ function Header(){
                 <div className="flex items-center justify-start w-full h-24">
                     <img src={logo} className="h-16 pr-4 text-gray-50" alt="logo"></img>
                     <label className="text-4xl font-black text-gray-50">CAT DOG</label>
+                    
                 </div>
             </div>
             <div className="h-24">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import api from '../API/CatDog';
 import Header from '../Components/Layout/Header'
+import ScrollState from '../Components/Layout/ScrollState';
 import Footer from '../Components/Layout/Footer'
 
 ///////////////////////////////////////////
@@ -31,31 +32,70 @@ const ProgressBar = ({ label, progressPercentage }) => {
     );
 };
 
+
 function Main() {
     const [fileName, setFileName] = useState('');
     const [inputImageURL,setInputImageURL] = useState('');
     const [predictImageURL,setPredictImageURL] = useState('');
     const [predictResult,setPredictResult] = useState([]);
+    const [predictModel,setPredictModel] = useState([]);
+    const [predictModelState, setPredictModelState] = useState('');
+
+    const [wheel, setWheel] = useState(0);
+    const [wheelPercent, setWheelPercent] = useState(0);
+
 
     useEffect( () => {
-
+        onHandlerCNNOptions();
     },[])
 
     ///////////////////////////
+    const onWheelState = (e) => {
+        let _wheel = wheel + e.deltaY*1.5
+        
+        if (wheel < 0){
+            _wheel = 0
+        }
+
+        if (wheel > document.body.scrollHeight){
+            _wheel = document.body.scrollHeight
+        }
+
+        let _wheelPercent = Number( _wheel / document.body.scrollHeight * 100 )
+
+        setWheel(_wheel);
+        setWheelPercent(_wheelPercent);
+    }
+
+    const onChangePredictModelState = (e) =>{
+        setPredictModelState(e.target.value);
+    }
+
+    const onHandlerCNNOptions = () => {
+        api.post("predict_model_list/")
+        .then(response => {
+            setPredictModelState(response.data[0].model_name);
+            setPredictModel(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     const onChangeInputFile = (e) => {
 
         e.preventDefault();
-
+        
         const splitFileName = String(e.target.value).split("\\");
         const fileName = splitFileName[splitFileName.length-1]
 
         setFileName(fileName);
-
         const formData = new FormData();
 
         //formData.append({ [e.target.name]: e.target.value });
         formData.append('input_file_name', fileName);
         formData.append('files', e.target.files[0]);
+        formData.append('model_name', predictModelState);
         //console.log(e.target.files[0]);
         api.post("create/", formData,{
             headers: {
@@ -74,8 +114,11 @@ function Main() {
     ///////////////////////////
     
     return (
-        <div className="min-w-screan">
+        <div className="min-w-screan min-h-full"  onWheel={onWheelState} >
             <Header />
+            <ScrollState 
+                wheelPercent={wheelPercent}
+            />
             <div className="w-full min-w-full">
                 {/*todo:*/}
                 <div className="w-full bg-white px-64 py-12">
@@ -148,6 +191,18 @@ function Main() {
                     {/*contexts*/}
                     <div className="px-8 pb-8">
                         <div className="flex items-center justify-center">
+                            <select onChange={onChangePredictModelState} className="h-16 text-2xl leading-loose font-bold w-full cursor-pointer inline-flex justify-start items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-300 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                                {
+                                    predictModel && predictModel.map( (element) => (
+                                        <option key={element.id} className="text-2xl leading-loose font-bold w-full cursor-pointer inline-flex justify-start items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-black bg-white focus:outline-none focus:ring-2 focus:ring-offset-2">
+                                            {element.model_name}
+                                        </option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+
+                        <div className="flex items-center justify-center pt-5">
                             <label className="w-full cursor-pointer inline-flex justify-start items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <UploadIcon className="mr-2 h-8 w-8"/>
                                 <span className="text-2xl leading-loose font-bold">Select a File&nbsp;:&nbsp;</span>
@@ -216,7 +271,7 @@ function Main() {
                         
                         {
                             predictResult && predictResult.map( (element) => (
-                                <div className="flex justify-center items-center font-thin text-center pb-4">
+                                <div key={element.id} className="flex justify-center items-center font-thin text-center pb-4">
                                     <ProgressBar 
                                         label={element.label.toUpperCase()}
                                         progressPercentage={parseInt(element.score)}
