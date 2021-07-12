@@ -1,5 +1,6 @@
 # ai
 checkpoints/
 venv/
+_venv/
 __pycache__/
 data/
