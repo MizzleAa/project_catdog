@@ -191,7 +191,7 @@ function Main() {
                     {/*contexts*/}
                     <div className="px-8 pb-8">
                         <div className="flex items-center justify-center">
-                            <select onChange={onChangePredictModelState} className="h-16 text-2xl leading-loose font-bold w-full cursor-pointer inline-flex justify-start items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-300 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                            <select onChange={onChangePredictModelState} className="h-16 text-2xl leading-loose font-bold w-full cursor-pointer inline-flex justify-start items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-yellow-200 bg-blue-300 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                                 {
                                     predictModel && predictModel.map( (element) => (
                                         <option key={element.id} className="text-2xl leading-loose font-bold w-full cursor-pointer inline-flex justify-start items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-black bg-white focus:outline-none focus:ring-2 focus:ring-offset-2">
