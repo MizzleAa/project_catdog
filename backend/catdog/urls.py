@@ -4,7 +4,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 
-from .views import RecordCreate, RecordDelete, RecordList, RecordUpdate, RecordRetrieve
+from .views import RecordCreate, RecordDelete, RecordList, RecordUpdate, RecordRetrieve, PredictModelList
 
 app_name = 'catdog'
 
@@ -19,5 +19,8 @@ urlpatterns = [
          RecordUpdate.as_view(), name='record_update'),
     path('delete/<int:pk>',
          RecordDelete.as_view(), name='record_delete'),
+
+     path('predict_model_list/',
+         PredictModelList.as_view(), name='predict_model_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

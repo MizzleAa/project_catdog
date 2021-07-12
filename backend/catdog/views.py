@@ -19,6 +19,13 @@ from .ai.predict import predict
 import os
 import datetime
 from PIL import Image
+
+class PredictModelList(APIView):
+    def post(self, request, format=None):
+        predict_model = PredictModel.objects.all()
+        serializer = PredictModelSerializer(predict_model, many=True)
+        return Response(serializer.data)
+
 class RecordList(APIView):
     def post(self, request, format=None):
         record = Record.objects.all()
@@ -36,14 +43,15 @@ class RecordCreate(APIView):
         predict_file_name = f"predict_{str_datetime}_{request.data['input_file_name']}"
 
         files = request.data["files"]
-
+        model_name = request.data["model_name"]
+        predict_model = PredictModel.objects.get(model_name=model_name)
         path = default_storage.save(input_file_name, ContentFile(files.read()))
         
         predict_options = {
             #"model_root":"faster_rcnn",
             #"model_name": "faster_rcnn_r50_fpn_1x_coco",
-            "model_root":"cascade_rcnn",
-            "model_name": "cascade_mask_rcnn_x101_32x4d_fpn_1x_coco",
+            "model_root": predict_model.model_path,
+            "model_name": predict_model.model_name,
             "input_file_name":input_file_name,
             "predict_file_name":predict_file_name
         }

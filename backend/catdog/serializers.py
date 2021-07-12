@@ -4,11 +4,10 @@ from .models import PredictModel, Record
 class PredictModelSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
-            'id', 
-            'model_name', 
-            'model_path',
-            'config_path',
+            'id',
+            'model_name',
         )
+        
         model = PredictModel
 
 

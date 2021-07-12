@@ -112,7 +112,6 @@ class Predict(FileIO):
     def run(self, options={}):
         try:
             dir = Path(__file__).resolve().parent
-
             
             model_args = {
                 "device":"cuda:0",
