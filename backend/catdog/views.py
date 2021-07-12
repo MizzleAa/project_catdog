@@ -16,9 +16,8 @@ from .models import Record, PredictModel
 
 from .ai.predict import predict
 
-import os
 import datetime
-from PIL import Image
+import random
 
 class PredictModelList(APIView):
     def post(self, request, format=None):
@@ -38,9 +37,9 @@ class RecordCreate(APIView):
 
         now = datetime.datetime.now()
         str_datetime = now.strftime('%Y%m%d_%H%M%S')
-
-        input_file_name = f"input_{str_datetime}_{request.data['input_file_name']}"
-        predict_file_name = f"predict_{str_datetime}_{request.data['input_file_name']}"
+        seed = int(random.random() * 1000000)
+        input_file_name = f"input_{str_datetime}_{seed}.png"
+        predict_file_name = f"predict_{str_datetime}_{seed}.png"
 
         files = request.data["files"]
         model_name = request.data["model_name"]
