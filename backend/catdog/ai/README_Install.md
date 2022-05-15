@@ -5,7 +5,6 @@ venv\Scripts\activate
 python -m pip install --upgrade pip  
 pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 torchaudio===0.8.1 -f https://download.pytorch.org/whl/torch_stable.html  
 pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu102/torch1.8.0/index.html  
-pip install requirements.txt  
 pip install mmdet==2.14.0  
   
 ### 2. pth 다운로드  
